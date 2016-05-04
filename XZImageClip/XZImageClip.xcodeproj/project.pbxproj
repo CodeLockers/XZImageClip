@@ -14,7 +14,6 @@
 		E92403791CC8FA22002C561E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E92403781CC8FA22002C561E /* Assets.xcassets */; };
 		E924037C1CC8FA22002C561E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E924037A1CC8FA22002C561E /* LaunchScreen.storyboard */; };
 		E92403851CC8FC09002C561E /* XZImageClipTouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = E92403841CC8FC09002C561E /* XZImageClipTouchView.m */; };
-		E989BFFF1CC91524006BFE53 /* image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E989BFFE1CC91524006BFE53 /* image.jpg */; };
 		E98BC4F91CC9043200C9F8B6 /* XZImageClipScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = E98BC4F81CC9043200C9F8B6 /* XZImageClipScrollView.m */; };
 /* End PBXBuildFile section */
 
@@ -31,7 +30,6 @@
 		E924037D1CC8FA22002C561E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E92403831CC8FC09002C561E /* XZImageClipTouchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XZImageClipTouchView.h; sourceTree = "<group>"; };
 		E92403841CC8FC09002C561E /* XZImageClipTouchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XZImageClipTouchView.m; sourceTree = "<group>"; };
-		E989BFFE1CC91524006BFE53 /* image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image.jpg; sourceTree = "<group>"; };
 		E98BC4F71CC9043200C9F8B6 /* XZImageClipScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XZImageClipScrollView.h; sourceTree = "<group>"; };
 		E98BC4F81CC9043200C9F8B6 /* XZImageClipScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XZImageClipScrollView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -74,7 +72,6 @@
 				E98BC4F81CC9043200C9F8B6 /* XZImageClipScrollView.m */,
 				E92403831CC8FC09002C561E /* XZImageClipTouchView.h */,
 				E92403841CC8FC09002C561E /* XZImageClipTouchView.m */,
-				E989BFFE1CC91524006BFE53 /* image.jpg */,
 				E92403751CC8FA22002C561E /* Main.storyboard */,
 				E92403781CC8FA22002C561E /* Assets.xcassets */,
 				E924037A1CC8FA22002C561E /* LaunchScreen.storyboard */,
@@ -123,7 +120,7 @@
 				TargetAttributes = {
 					E92403681CC8FA22002C561E = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = 4KL3S3ZYGZ;
+						DevelopmentTeam = 72MV6GX6X6;
 					};
 				};
 			};
@@ -153,7 +150,6 @@
 				E924037C1CC8FA22002C561E /* LaunchScreen.storyboard in Resources */,
 				E92403791CC8FA22002C561E /* Assets.xcassets in Resources */,
 				E92403771CC8FA22002C561E /* Main.storyboard in Resources */,
-				E989BFFF1CC91524006BFE53 /* image.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -212,7 +208,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: 章 徐 (8Q7EBYUPDX)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 章 徐 (8Q7EBYUPDX)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -234,6 +231,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "df65c406-c475-42bd-b81f-d01a109c42e3";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -256,7 +254,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: 章 徐 (8Q7EBYUPDX)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 章 徐 (8Q7EBYUPDX)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -271,6 +270,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "df65c406-c475-42bd-b81f-d01a109c42e3";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -281,13 +281,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 章 徐 (8Q7EBYUPDX)";
 				INFOPLIST_FILE = XZImageClip/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = xuzhang.XZImageClip;
+				PRODUCT_BUNDLE_IDENTIFIER = com.maicheng.timecalendar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "df65c406-c475-42bd-b81f-d01a109c42e3";
 			};
 			name = Debug;
 		};
@@ -296,13 +296,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 章 徐 (8Q7EBYUPDX)";
 				INFOPLIST_FILE = XZImageClip/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = xuzhang.XZImageClip;
+				PRODUCT_BUNDLE_IDENTIFIER = com.maicheng.timecalendar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "df65c406-c475-42bd-b81f-d01a109c42e3";
 			};
 			name = Release;
 		};

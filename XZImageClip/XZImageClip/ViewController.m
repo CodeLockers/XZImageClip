@@ -27,7 +27,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.view addSubview:self.scrollView];
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    [self.view insertSubview:self.scrollView atIndex:0];
     [self.view addSubview:self.touchView];
     [self.view addSubview:self.completeBtn];
     [self.view addSubview:self.clipImageView];
@@ -39,17 +40,47 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)viewDidLayoutSubviews{
+
+
+#pragma mark - Private_Methods
+/**
+ *  0->4:3
+ *  1->1:1
+ *  2->3:4
+ *  3->16:9
+ */
+- (void)makeMaskPathWithType:(NSInteger)type{
     
-    [super viewDidLayoutSubviews];
-    [self.scrollView displayImage:[UIImage imageNamed:@"image"]];
+    UIBezierPath *clipPath = [UIBezierPath bezierPathWithRect:self.touchView.frame];
+    UIBezierPath *maskPath;
+
+    switch (type) {
+        case 0:
+            maskPath = [UIBezierPath bezierPathWithRect:CGRectMake(0, (CGRectGetHeight(self.touchView.bounds) - UISCREEN_WIDTH/4*3)/2.0f , UISCREEN_WIDTH, UISCREEN_WIDTH/4*3)];
+            break;
+        case 1:
+            maskPath = [UIBezierPath bezierPathWithRect:CGRectMake(0, (CGRectGetHeight(self.touchView.bounds) - UISCREEN_WIDTH)/2.0f , UISCREEN_WIDTH, UISCREEN_WIDTH)];
+            break;
+        case 2:
+            maskPath = [UIBezierPath bezierPathWithRect:CGRectMake(UISCREEN_WIDTH/8.0f, (CGRectGetHeight(self.touchView.bounds) - UISCREEN_WIDTH)/2.0f, UISCREEN_WIDTH/4*3, UISCREEN_WIDTH)];
+            break;
+        case 3:
+            maskPath = [UIBezierPath bezierPathWithRect:CGRectMake(0, (CGRectGetHeight(self.touchView.bounds) - UISCREEN_WIDTH/16*9)/2.0f , UISCREEN_WIDTH, UISCREEN_WIDTH/16*9)];
+            break;
+        default:
+            break;
+    }
+    clipPath.usesEvenOddFillRule = YES;
+    [clipPath appendPath:maskPath];
+    
+    self.maskLayer.path = clipPath.CGPath;
 }
 
 #pragma mark - Setter && Getter
 - (XZImageClipTouchView *)touchView{
     
     if (!_touchView) {
-        _touchView = [[XZImageClipTouchView alloc] initWithFrame:CGRectMake(0, 0, UISCREEN_WIDTH, UISCREEN_HEIGHT)];
+        _touchView = [[XZImageClipTouchView alloc] initWithFrame:CGRectMake(0, 0, UISCREEN_WIDTH, UISCREEN_HEIGHT-100.0f)];
         _touchView.receiver = self.scrollView;
         [_touchView.layer addSublayer:self.maskLayer];
     }
@@ -63,12 +94,7 @@
         _maskLayer = [[CAShapeLayer alloc] init];
         _maskLayer.fillColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.7].CGColor;
         _maskLayer.fillRule = kCAFillRuleEvenOdd;
-        UIBezierPath *clipPath = [UIBezierPath bezierPathWithRect:self.touchView.frame];
-        UIBezierPath *maskPath = [UIBezierPath bezierPathWithRect:CGRectMake(0, (CGRectGetHeight(self.touchView.bounds) - UISCREEN_WIDTH)/2.0f , UISCREEN_WIDTH, UISCREEN_WIDTH)];
-        clipPath.usesEvenOddFillRule = YES;
-        [clipPath appendPath:maskPath];
-        
-        self.maskLayer.path = clipPath.CGPath;
+        [self makeMaskPathWithType:1];
     }
     return _maskLayer;
 }
@@ -79,6 +105,7 @@
         
         _scrollView = [[XZImageClipScrollView alloc] init];
         _scrollView.frame = CGRectMake(0, (CGRectGetHeight(self.touchView.bounds) - UISCREEN_WIDTH)/2.0f, UISCREEN_WIDTH, UISCREEN_WIDTH);
+        [self.scrollView displayImage:[UIImage imageNamed:@"image"]];
     }
     return _scrollView;
 }
@@ -87,27 +114,51 @@
 
     if (!_clipImageView) {
         
-        _clipImageView = [[UIImageView alloc] initWithFrame:CGRectMake(UISCREEN_WIDTH - 100, 0, 100, 100)];
-        _clipImageView.backgroundColor = [UIColor redColor];
+        _clipImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+        _clipImageView.layer.borderWidth = 1.0f;
+        _clipImageView.layer.borderColor = [UIColor greenColor].CGColor;
+        _clipImageView.contentMode = UIViewContentModeScaleAspectFit;
     }
     return _clipImageView;
 }
 
-- (UIButton *)completeBtn{
+#pragma mark - UIButton_Action
+- (IBAction)cropBtn_Pressed:(id)sender {
     
-    if (!_completeBtn) {
-        
-        _completeBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
-        _completeBtn.backgroundColor = [UIColor yellowColor];
-        [_completeBtn addTarget:self action:@selector(compelteBtn_Pressed) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _completeBtn;
+    [self cropImage];
 }
 
-#pragma mark - UIButton_Action
-- (void)compelteBtn_Pressed{
+- (IBAction)ration43Btn_Pressed:(id)sender {
+    
+    CGPoint center = self.touchView.center;
 
-    [self cropImage];
+    self.scrollView.frame = CGRectMake(0, 0, UISCREEN_WIDTH, UISCREEN_WIDTH/4*3);
+    self.scrollView.center = center;
+    [self makeMaskPathWithType:0];
+}
+
+- (IBAction)ration11Btn_Pressed:(id)sender {
+    CGPoint center = self.touchView.center;
+    
+    self.scrollView.frame = CGRectMake(0, 0, UISCREEN_WIDTH, UISCREEN_WIDTH);
+    self.scrollView.center = center;
+    [self makeMaskPathWithType:1];
+}
+
+- (IBAction)ration34Btn_Pressed:(id)sender {
+    CGPoint center = self.touchView.center;
+    
+    self.scrollView.frame = CGRectMake(0, 0, UISCREEN_WIDTH/4*3, UISCREEN_WIDTH);
+    self.scrollView.center = center;
+    [self makeMaskPathWithType:2];
+}
+
+- (IBAction)ration169Btn_Pressed:(id)sender {
+    CGPoint center = self.touchView.center;
+    
+    self.scrollView.frame = CGRectMake(0, 0, UISCREEN_WIDTH, UISCREEN_WIDTH/16*9);
+    self.scrollView.center = center;
+    [self makeMaskPathWithType:3];
 }
 
 - (CGRect)cropRect
