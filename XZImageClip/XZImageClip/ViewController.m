@@ -51,7 +51,7 @@
  */
 - (void)makeMaskPathWithType:(NSInteger)type{
     
-    UIBezierPath *clipPath = [UIBezierPath bezierPathWithRect:self.touchView.frame];
+    UIBezierPath *clipPath = [UIBezierPath bezierPathWithRect:self.touchView.bounds];
     UIBezierPath *maskPath;
 
     switch (type) {
@@ -176,7 +176,7 @@
 - (UIImage *)croppedImage:(UIImage *)image cropRect:(CGRect)cropRect
 {
     CGImageRef croppedCGImage = CGImageCreateWithImageInRect(image.CGImage, cropRect);
-    UIImage *croppedImage = [UIImage imageWithCGImage:croppedCGImage scale:[UIScreen mainScreen].scale orientation:image.imageOrientation];
+    UIImage *croppedImage = [UIImage imageWithCGImage:croppedCGImage scale:1 orientation:image.imageOrientation];
     CGImageRelease(croppedCGImage);
     return croppedImage;
 }
